@@ -23,8 +23,8 @@ def show_tasks(Tasks):
         elif(len(Tasks) == 1):
             print(f"---- YOU CURRENTLY HAVE {len(Tasks)} TASKS ----")
         print("")
-        for task in saved_tasks:
-            print(f"- {task["body"]}")
+        for index,task in enumerate(saved_tasks):
+            print(f"{index + 1} - {task["body"]}")
             if(task["completed"] == False):
                 print(f"    state: pending")
             else:
