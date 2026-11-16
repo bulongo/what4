@@ -3,34 +3,18 @@
 import json
 import time
 from pathlib import Path
-import os
 from dataclasses import dataclass, asdict
 
-print("WHAT4")
-
-def clear():
-    os.system("clear")
-
-# if(Path("tasks.json").exists()):
-#     with open("tasks.json", "w", enconding="utf-8") as file:
-#     pass
-# else:
-#     print("File does not exist")
-#
-print("** TO STOP ADDING TASKS, TYPE 'done' AND PRESS ENTER **")
-print()
-time.sleep(1)
-running = True
+## custom modules ##
+from functions.clear import clear
+from action_selector import action_selector
+from save_tasks import save_tasks
+from show_tasks import show_tasks
+from load_tasks import load_tasks
 Tasks = []
+save_tasks()
 
-@dataclass
-class Task:
-    # category: str
-    body: str
-    completed: bool = False
-    
-    def say_task(self):
-        return f"{self.body}"
+print("WHAT4")
 
 
 def exiter():
@@ -48,107 +32,5 @@ def exiter():
         time.sleep(1)
         exit()
 
-
-def choices():
-        action = input("Would you like to (A)dd a task, (E)dit,(D)elete or e(X)it?: ")
-        if(action == "A" or action =="a"):
-            adder()
-        elif(action == "E" or action == "e"):
-            editor()
-        elif(action == "D" or action == "d"):
-            deleter()
-        elif(action == "X" or action == "x"):
-            exiter()
-
-def adder():
-    # task_title = input("Add task category: ")
-    task_body = input("Task: ")
-    new_task = Task(task_body)
-    Tasks.append(new_task)
-    clear()
-
-    print("")
-    print("##############################")
-    print("")
-    print("---- CURRENT TASKS ----")
-    print("")
-    for task in Tasks:
-        print(f"- {task.body}")
-        if(task.completed == False):
-            print(f"    state: pending")
-        else:
-            print(f"    state: complete")
-    print("")
-    print("##############################")
-
-
-    choice = input("would you like to add more tasks (y/n): ")
-
-    if(choice == "y"):
-        adder()
-    elif(choice == "n"):
-        save_and_exit = input("would you like to save and exit(y) or just exit(n)?: ")
-        if(save_and_exit == 'y'):
-            data = [{**asdict(t)} for t in Tasks]
-            with open("tasks.json","w") as f:
-                json.dump(data,f, indent=4)
-            exit()
-        else:
-            exit()
-        # choices()
-    else:
-        choice = input("Invalid option. please choose between 'y' and 'n': ")
-
-
-def editor():
-        print("You are now in edit mode.")
-        print("Select a task you would like to edit.")
-        if(Tasks != []):
-            for task in Tasks:
-                print(task)
-        else:
-            print("No tasks to edit.")
-
-
-def deleter():
-    print("We will clean house")
-
-def show_tasks():
-    with open('tasks.json',"r",encoding="utf-8") as f:
-        Tasks = json.loads(f.read())
-
-    if(Tasks == []):
-        print("You have no tasks in your tasks list.")
-        ans = input("Would you like to add tasks?(y/n): ")
-        if(ans == "y"):
-            adder()
-        elif(ans == "n"):
-            choices()
-        else:
-            ans = input("invalid choice, please try again: ")
-    else:
-        if(len(Tasks) > 1):
-            print(f"You have {len(Tasks)} tasks.")
-        elif(len(Tasks) == 1):
-            print(f"You have {len(Tasks)} task.")
-        print(Tasks)
-        choices()
-        
-
-show_tasks()
-
-# while(running):
-#     # if((action == "e" or action == "E") and tasks != []):
-#     #     editor()
-#     if(task == "done"):
-#         print("Saving to file and ending programme")
-#         running = False
-#     if(task == ""):
-#         print("You can't add an empyty task")
-#         task = input("Task?: ")
-#     else:
-#         tasks.append(task)
-#         print("Task added!")
-#         print("Tasks = %s" %tasks)
-#
-
+show_tasks(Tasks)
+action_selector(Tasks)

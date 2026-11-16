@@ -1,10 +1,14 @@
 [
     {
-        "body": "get the full list of names and messages people sent.",
+        "body": "something new",
         "completed": false
     },
     {
-        "body": "find out what else I need to know to create an obsidian like app.",
+        "body": "new task to be added",
+        "completed": false
+    },
+    {
+        "body": "find a baddie",
         "completed": false
     }
 ]
