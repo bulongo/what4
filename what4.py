@@ -12,7 +12,6 @@ from save_tasks import save_tasks
 from show_tasks import show_tasks
 from load_tasks import load_tasks
 Tasks = []
-save_tasks()
 
 print("WHAT4")
 
