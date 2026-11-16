@@ -1,14 +1,10 @@
 [
     {
-        "body": "eat",
+        "body": "get the full list of names and messages people sent.",
         "completed": false
     },
     {
-        "body": "shit",
-        "completed": false
-    },
-    {
-        "body": "sleep",
+        "body": "find out what else I need to know to create an obsidian like app.",
         "completed": false
     }
 ]

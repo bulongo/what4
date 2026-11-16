@@ -33,7 +33,7 @@ class Task:
         return f"{self.body}"
 
 
-def exiting_text():
+def exiter():
         clear()
         print("Saving file and exiting")
         time.sleep(.3)
@@ -50,13 +50,15 @@ def exiting_text():
 
 
 def choices():
-        action = input("Would you like to (E)dit,(D)elete,e(X)it?: ")
-        if(action == "E" or action == "e"):
+        action = input("Would you like to (A)dd a task, (E)dit,(D)elete or e(X)it?: ")
+        if(action == "A" or action =="a"):
+            adder()
+        elif(action == "E" or action == "e"):
             editor()
         elif(action == "D" or action == "d"):
             deleter()
         elif(action == "X" or action == "x"):
-            exiting_text()
+            exiter()
 
 def adder():
     # task_title = input("Add task category: ")
@@ -71,7 +73,11 @@ def adder():
     print("---- CURRENT TASKS ----")
     print("")
     for task in Tasks:
-        print(f"- {task}")
+        print(f"- {task.body}")
+        if(task.completed == False):
+            print(f"    state: pending")
+        else:
+            print(f"    state: complete")
     print("")
     print("##############################")
 
@@ -108,6 +114,9 @@ def deleter():
     print("We will clean house")
 
 def show_tasks():
+    with open('tasks.json',"r",encoding="utf-8") as f:
+        Tasks = json.loads(f.read())
+
     if(Tasks == []):
         print("You have no tasks in your tasks list.")
         ans = input("Would you like to add tasks?(y/n): ")
@@ -117,9 +126,14 @@ def show_tasks():
             choices()
         else:
             ans = input("invalid choice, please try again: ")
-        
     else:
+        if(len(Tasks) > 1):
+            print(f"You have {len(Tasks)} tasks.")
+        elif(len(Tasks) == 1):
+            print(f"You have {len(Tasks)} task.")
         print(Tasks)
+        choices()
+        
 
 show_tasks()
 
