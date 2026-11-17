@@ -15,21 +15,5 @@ Tasks = []
 
 print("WHAT4")
 
-
-def exiter():
-        clear()
-        print("Saving file and exiting")
-        time.sleep(.3)
-        clear()
-        print("Saving file and exiting.")
-        time.sleep(.3)
-        clear()
-        print("Saving file and exiting..")
-        time.sleep(.3)
-        clear()
-        print("Saving file and exiting...")
-        time.sleep(1)
-        exit()
-
 show_tasks(Tasks)
 action_selector(Tasks)

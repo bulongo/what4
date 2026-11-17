@@ -1,5 +1,7 @@
 from adder import adder
 from editor import editor
+from deleter import deleter
+from functions.exiter import exiter
 
 
 def action_selector(Tasks):
@@ -9,7 +11,7 @@ def action_selector(Tasks):
         elif(action == "E" or action == "e"):
             editor(Tasks)
         elif(action == "D" or action == "d"):
-            deleter()
+            deleter(Tasks)
         elif(action == "X" or action == "x"):
             exiter()
 

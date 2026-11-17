@@ -3,6 +3,7 @@ from dataclasses import asdict
 from load_tasks import load_tasks
 from classes.Task import Task
 from functions.clear import clear
+from functions.exiter import exiter
 
 def adder(Tasks):
     # task_title = input("Add task category: ")
@@ -28,6 +29,7 @@ def adder(Tasks):
                         saved_tasks.append(data[i])
                         with open("tasks.json","w",encoding="utf-8") as g:
                             json.dump(saved_tasks,g, indent=4)
+                exiter()
                 exit()
             else:
                 exit()
